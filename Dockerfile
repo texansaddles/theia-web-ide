@@ -11,11 +11,14 @@ WORKDIR /workspace
 # Copy repo
 COPY . .
 
-# Install deps (use install to update lock for local workspaces) and build
+# Install only required workspaces to avoid native electron/git deps
 ENV NODE_ENV=production
-RUN npm install \
- && npm run build:browser \
- && npm run download:plugins
+ENV NPM_CONFIG_OPTIONAL=false
+RUN npm ci --workspaces --include-workspace-root=false \
+      --workspace @theia/ext-scripts \
+      --workspace @theia/example-browser \
+ && npm run -w @theia/example-browser build \
+ && npm run -w @theia/example-browser download:plugins
 
 ENV THEIA_HOSTS="*"
 EXPOSE 3000
