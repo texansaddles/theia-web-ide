@@ -1,8 +1,8 @@
 {
   "version": 2,
   "framework": null,
-  "installCommand": "npm install --prefix examples/browser-only",
-  "buildCommand": "npm run --prefix examples/browser-only build",
+  "installCommand": "npm ci --workspaces --include-workspace-root=false --workspace @theia/example-browser-only",
+  "buildCommand": "npm run -w @theia/example-browser-only build",
   "outputDirectory": "examples/browser-only/lib",
   "env": {
     "NODE_OPTIONS": "--max_old_space_size=4096"
