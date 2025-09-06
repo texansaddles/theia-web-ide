@@ -6,6 +6,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 make g++ pkg-config libx11-dev libxkbfile-dev libsecret-1-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Ensure mono-repo postinstall can run (lerna CLI required by root scripts)
+RUN npm i -g lerna@7.4.2
+
 WORKDIR /workspace
 
 # Copy repo
