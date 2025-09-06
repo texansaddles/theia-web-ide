@@ -3,7 +3,7 @@ FROM node:20-bullseye
 
 # Native module prerequisites (Linux)
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 make g++ pkg-config libx11-dev libxkbfile-dev libsecret-1-dev \
+    python3 make g++ pkg-config git libx11-dev libxkbfile-dev libsecret-1-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Ensure mono-repo postinstall can run (lerna CLI required by root scripts)
@@ -14,13 +14,13 @@ WORKDIR /workspace
 # Copy repo
 COPY . .
 
-# Install only required workspaces to avoid native electron/git deps
-ENV NODE_ENV=production
-RUN npm ci --workspaces --include-workspace-root=false \
-      --workspace @theia/ext-scripts \
-      --workspace @theia/example-browser \
- && npm run -w @theia/example-browser build \
- && npm run -w @theia/example-browser download:plugins
+# Full install to satisfy repo postinstall hooks and build
+ENV NODE_ENV=production \
+    PUPPETEER_SKIP_DOWNLOAD=1 \
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+RUN npm ci \
+ && npm run build:browser \
+ && npm run download:plugins
 
 ENV THEIA_HOSTS="*"
 EXPOSE 3000
