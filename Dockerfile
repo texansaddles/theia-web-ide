@@ -20,7 +20,7 @@ RUN npm install \
  && npm run build:browser \
  && npm run download:plugins
 
-ENV THEIA_HOSTS="*"
+# Do not restrict hosts by default; set THEIA_HOSTS at runtime if needed
 EXPOSE 3000
 
 # Start the browser example; Render sets PORT, default to 3000
