@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log*
+.npm-cache
+.git
+.gitignore
+.github
+**/.cache
+**/.eslintcache
+**/.nyc_output
+**/dist
+**/lib
+**/*.tsbuildinfo
+**/*.log
+plugins
+logo
+doc/images
+logo
