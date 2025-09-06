@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "@theia/scheduler-assistant",
+  "version": "1.64.0",
+  "description": "Scheduler assistant extension for Theia (browser-only v1).",
+  "license": "EPL-2.0 OR GPL-2.0-only WITH Classpath-exception-2.0",
+  "files": ["lib", "src"],
+  "theiaExtensions": [
+    { "frontend": "lib/browser/scheduler-assistant-frontend-module" }
+  ],
+  "scripts": {
+    "build": "theiaext build",
+    "watch": "theiaext watch",
+    "clean": "theiaext clean",
+    "lint": "theiaext lint"
+  },
+  "dependencies": {
+    "@theia/core": "1.64.0",
+    "@theia/ai-chat": "1.64.0",
+    "@theia/ai-chat-ui": "1.64.0"
+  },
+  "devDependencies": {
+    "@theia/ext-scripts": "1.64.0"
+  }
+}
+

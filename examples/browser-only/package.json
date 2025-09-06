@@ -15,6 +15,7 @@
     }
   },
   "dependencies": {
+    "@theia/scheduler-assistant": "1.64.0",
     "@theia/ai-chat": "1.64.0",
     "@theia/ai-chat-ui": "1.64.0",
     "@theia/ai-code-completion": "1.64.0",
