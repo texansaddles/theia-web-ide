@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "framework": null,
+  "installCommand": "npm install --prefix examples/browser-only",
+  "buildCommand": "npm run --prefix examples/browser-only build",
+  "outputDirectory": "examples/browser-only/lib",
+  "env": {
+    "NODE_OPTIONS": "--max_old_space_size=4096"
+  }
+}
