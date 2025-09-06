@@ -12,6 +12,7 @@ WORKDIR /workspace
 COPY . .
 
 # Install deps (use install to update lock for local workspaces) and build
+ENV NODE_ENV=production
 RUN npm install \
  && npm run build:browser \
  && npm run download:plugins
