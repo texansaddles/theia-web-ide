@@ -16,7 +16,6 @@ COPY . .
 
 # Install only required workspaces to avoid native electron/git deps
 ENV NODE_ENV=production
-ENV NPM_CONFIG_OPTIONAL=false
 RUN npm ci --workspaces --include-workspace-root=false \
       --workspace @theia/ext-scripts \
       --workspace @theia/example-browser \
