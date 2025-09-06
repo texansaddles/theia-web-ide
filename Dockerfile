@@ -6,19 +6,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 make g++ pkg-config git libx11-dev libxkbfile-dev libsecret-1-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Ensure mono-repo postinstall can run (lerna CLI required by root scripts)
-RUN npm i -g lerna@7.4.2
+# No global installs; use local devDependencies installed by npm
 
 WORKDIR /workspace
 
 # Copy repo
 COPY . .
 
-# Full install to satisfy repo postinstall hooks and build
-ENV NODE_ENV=production \
-    PUPPETEER_SKIP_DOWNLOAD=1 \
+# Full install to satisfy repo postinstall hooks and build (include dev deps)
+ENV PUPPETEER_SKIP_DOWNLOAD=1 \
     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-RUN npm ci \
+RUN npm install \
  && npm run build:browser \
  && npm run download:plugins
 
